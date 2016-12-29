@@ -1,6 +1,6 @@
 {
   "name": "firebase-sync-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Firebase synchronization without blocking the main thread",
   "main": "index.js",
   "scripts": {
