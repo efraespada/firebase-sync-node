@@ -1,0 +1,27 @@
+{
+  "name": "firebase-sync-node",
+  "version": "1.0.0",
+  "description": "Firebase synchronization without blocking the main thread",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/efraespada/firebase-sync-node.git"
+  },
+  "keywords": [
+    "firebase",
+    "sync",
+    "node"
+  ],
+  "author": "Efra Espada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/efraespada/firebase-sync-node/issues"
+  },
+  "homepage": "https://github.com/efraespada/firebase-sync-node#readme",
+  "dependencies": {
+    "sync-node": ">= 1.3.1"
+  }
+}
