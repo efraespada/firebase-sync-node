@@ -1,7 +1,9 @@
 # firebase-sync-node
 This node module works with [sync-node](https://github.com/VoidCanvas/sync-node) and allows you to instance your Firebase database as an associative array (synchronously).
 
-`$ npm install firebase-sync-node`
+```
+    $ npm install firebase-sync-node
+```
 
 ### Information
 Quick setup:
