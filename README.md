@@ -25,7 +25,7 @@ Of course you can modify that reference:
     })
 ```
 
-Call `syncFromDatabase` method every time you want to sync data on Firebase.
+Call `syncToDatabase` method every time you want to sync data on Firebase.
 
 ```javascript
     queue.pushJob(function() {
@@ -35,7 +35,7 @@ Call `syncFromDatabase` method every time you want to sync data on Firebase.
     // sync fireSync.ref variable
     fireSync.syncToDatabase()     
 ```
-Maybe you'll need some fresh data from database, so call the initial method to stay up to date from Firebase db:
+Maybe you'll need some fresh data from database, so call the initial method `syncFromDatabase` to stay up to date from Firebase db:
 
 ```javascript
     queue.pushJob(function() {
@@ -68,12 +68,13 @@ admin.initializeApp(credentials)
 
 // let's instance a puppy from database
 
-var path      = "puppies/draco"                         // path to reference
-var database  = admin.database()                        // firebase database instance
+var path        = "puppies/draco"                         // path to reference
+var database    = admin.database()                        // firebase database instance
 
-var fireSync = new FirebaseSyncNode(database, path)     // firebase-sync-node
-var queue = fireSync.getQueue()                         // database's queue
-fireSync.syncFromDatabase()                             // initial synchronization to create the puppy reference
+var fireSync    = new FirebaseSyncNode(database, path)     // firebase-sync-node
+var queue       = fireSync.getQueue()                      // database's queue
+
+fireSync.syncFromDatabase()                                // initial synchronization to create the puppy reference
 
 // add some properties to database
 queue.pushJob(function() {
