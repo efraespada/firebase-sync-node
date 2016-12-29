@@ -2,25 +2,51 @@
 This node module works with [sync-node](https://github.com/VoidCanvas/sync-node) and allows you to instance your Firebase database as an associative array (synchronously).
 
 ### Information
-Your database reference will be stored on `ref` var:
+Quick setup:
 ```javascript
-    var fireSync = ...
-    
-    // database reference
-    console.log(JSON.stringify(fireSync.ref))
+    var path      = "some/path/to/reference"                // path to reference
+    var database  = admin.database()                        // firebase database instance
+
+    var fireSync = new FirebaseSyncNode(database, path)     // firebase-sync-node
+    var queue = fireSync.getQueue()                         // database's queue 
+    fireSync.syncFromDatabase()                             // initial synchronization to create the reference
+```
+Once you have set it up, your database reference will be stored on `ref` var:
+```javascript
+    // print database reference
+    queue.pushJob(function() {
+        console.log(JSON.stringify(fireSync.ref))
+    })
+```
+Of course you can modify that reference:
+```javascript
+    queue.pushJob(function() {
+        fireSync.ref["some_random_prop"] = "2b or not 2b"
+    })
 ```
 
-Call `syncFromDatabase` method every time you want to sync data on Firebase database.
+Call `syncFromDatabase` method every time you want to sync data on Firebase.
 
 ```javascript
-    var fireSync = ...
-    
     queue.pushJob(function() {
         fireSync.ref.name = "Draco"
     })
 
     // sync fireSync.ref variable
     fireSync.syncToDatabase()     
+```
+Maybe you'll need some fresh data from database, so call the initial method to stay up to date from Firebase db:
+
+```javascript
+    queue.pushJob(function() {
+        fireSync.ref.name = "Draco"
+    })
+    
+    fireSync.syncFromDatabase()
+    
+    queue.pushJob(function() {
+        console.log("name: " + fireSync.ref.name)   // name: John
+    })
 ```
 ## Example
 
@@ -65,6 +91,6 @@ queue.pushJob(function() {
 fireSync.syncToDatabase()                               // now draco is white!
 ```
 
-For more documentation about `queue` check out the original node module: [sync-node](https://github.com/VoidCanvas/sync-node)
+For more documentation about `queue` check out the original node module by [@metalshan](https://github.com/metalshan): [sync-node](https://github.com/VoidCanvas/sync-node)
 
 (mmmm choooocolate :drooling_face:)
